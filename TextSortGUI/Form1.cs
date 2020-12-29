@@ -16,5 +16,25 @@ namespace TextSortGUI
         {
             InitializeComponent();
         }
+
+        private void OpenButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uppercaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
