@@ -58,7 +58,7 @@ namespace TextSortGUI
 
         private void uppercaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TextBox.SelectedText = TextBox.SelectedText.ToUpper();
         }
 
         private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
