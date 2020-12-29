@@ -80,9 +80,11 @@ namespace TextSortGUI
             this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBox.Location = new System.Drawing.Point(12, 27);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
+            this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(776, 369);
             this.TextBox.TabIndex = 3;
             // 
