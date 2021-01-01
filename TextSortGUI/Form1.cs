@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TextSortGUI
 {
@@ -63,7 +64,19 @@ namespace TextSortGUI
 
         private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+            TextBox.SelectedText = TextBox.SelectedText; 
 
+            Regex regexCasing = new Regex("(?:[.,?!]\\s[a-z]|^(?:\\s+)?[a-z])", RegexOptions.Multiline);
+
+            // /[.:?!]\\s[a-z]/   matches letters following a space and punctuation
+            // /^(?:\\s+)?[a-z]/  matches the first letter in a string
+
+            text = text.ToLower(); // all characters to lower case
+
+            text = regexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression, using a lambda expression
+
+            TextBox.Text = text;
         }
     }
 }
