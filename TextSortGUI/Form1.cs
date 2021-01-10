@@ -19,7 +19,9 @@ namespace TextSortGUI
         public Form1()
         {
             InitializeComponent();
+            Text = "TextSortGUI";
         }
+
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
@@ -40,20 +42,38 @@ namespace TextSortGUI
             }
         }
 
+        public void SaveFileFunction()
+        {
+            SaveFileDialog Savefilefunction = new SaveFileDialog
+            {
+                Title = "Save File",
+                Filter = "Text Files (*txt)|*txt" // filtering .txt files because we are only working with text files
+            };
+
+            if (Savefilefunction.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter sw = new StreamWriter(File.Create(Savefilefunction.FileName));
+
+                sw.Write(TextBox.Text);
+                sw.Dispose();
+            }
+
+        }
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog
             {
                 Title = "Save File",
-                Filter = "Text Files (*txt)|*txt"  // filtering .txt files because we are working only with text files
+                Filter = "Text Files (*txt)|*txt"  
             };
 
             if (save.ShowDialog() == DialogResult.OK)
             {
-                StreamWriter sw = new StreamWriter(File.Create(save.FileName));
+                StreamWriter s_w = new StreamWriter(File.Create(save.FileName));
 
-                sw.Write(TextBox.Text);
-                sw.Dispose();
+                s_w.Write(TextBox.Text);
+                s_w.Dispose();
             }
         }
 
@@ -67,16 +87,38 @@ namespace TextSortGUI
            
             TextBox.SelectedText = TextBox.SelectedText; 
 
-            Regex regexCasing = new Regex("(?:[.,?!]\\s[a-z]|^(?:\\s+)?[a-z])", RegexOptions.Multiline);
+            Regex RegexCasing = new Regex("(?:[.,?!]\\s[a-z]|^(?:\\s+)?[a-z])", RegexOptions.Multiline);
 
-            // /[.:?!]\\s[a-z]/   matches letters following a space and punctuation
+            // /[.,?!]\\s[a-z]/   matches letters following a space and punctuation
             // /^(?:\\s+)?[a-z]/  matches the first letter in a string
 
             text = text.ToLower(); // all characters to lower case
 
-            text = regexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression, using a lambda expression
+            text = RegexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression
 
             TextBox.Text = text;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var Result = MessageBox.Show("Do you want to close the program without saving?", "Exit", MessageBoxButtons.YesNoCancel);
+
+            switch (Result)
+            {
+                case DialogResult.Yes:
+                    break;
+
+                case DialogResult.No:
+                    SaveFileFunction();
+                    e.Cancel = true;
+                    break;
+
+                case DialogResult.Cancel:
+                    e.Cancel = true;
+                    break;
+              
+            }
+
         }
     }
 }

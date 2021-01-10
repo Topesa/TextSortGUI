@@ -30,11 +30,11 @@ namespace TextSortGUI
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.uppercaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accordingToSpellingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.TextBox = new System.Windows.Forms.TextBox();
-            this.uppercaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accordingToSpellingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +48,20 @@ namespace TextSortGUI
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // uppercaseToolStripMenuItem
+            // 
+            this.uppercaseToolStripMenuItem.Name = "uppercaseToolStripMenuItem";
+            this.uppercaseToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.uppercaseToolStripMenuItem.Text = "Uppercase";
+            this.uppercaseToolStripMenuItem.Click += new System.EventHandler(this.uppercaseToolStripMenuItem_Click);
+            // 
+            // accordingToSpellingToolStripMenuItem
+            // 
+            this.accordingToSpellingToolStripMenuItem.Name = "accordingToSpellingToolStripMenuItem";
+            this.accordingToSpellingToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
+            this.accordingToSpellingToolStripMenuItem.Text = "According to spelling";
+            this.accordingToSpellingToolStripMenuItem.Click += new System.EventHandler(this.accordingToSpellingToolStripMenuItem_Click);
             // 
             // OpenButton
             // 
@@ -67,6 +81,7 @@ namespace TextSortGUI
             this.SaveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.SaveButton.Location = new System.Drawing.Point(710, 415);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(75, 23);
@@ -88,20 +103,6 @@ namespace TextSortGUI
             this.TextBox.Size = new System.Drawing.Size(776, 369);
             this.TextBox.TabIndex = 3;
             // 
-            // uppercaseToolStripMenuItem
-            // 
-            this.uppercaseToolStripMenuItem.Name = "uppercaseToolStripMenuItem";
-            this.uppercaseToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.uppercaseToolStripMenuItem.Text = "Uppercase";
-            this.uppercaseToolStripMenuItem.Click += new System.EventHandler(this.uppercaseToolStripMenuItem_Click);
-            // 
-            // accordingToSpellingToolStripMenuItem
-            // 
-            this.accordingToSpellingToolStripMenuItem.Name = "accordingToSpellingToolStripMenuItem";
-            this.accordingToSpellingToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
-            this.accordingToSpellingToolStripMenuItem.Text = "According to spelling";
-            this.accordingToSpellingToolStripMenuItem.Click += new System.EventHandler(this.accordingToSpellingToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,6 +115,7 @@ namespace TextSortGUI
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
