@@ -12,18 +12,16 @@ using System.Text.RegularExpressions;
 
 namespace TextSortGUI
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        private string text = string.Empty;
+        private string text = "";
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
-            Text = "TextSortGUI";
         }
 
-
-        private void OpenButton_Click(object sender, EventArgs e)
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog
             {
@@ -42,6 +40,23 @@ namespace TextSortGUI
             }
         }
 
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog
+            {
+                Title = "Save File",
+                Filter = "Text Files (*txt)|*txt"
+            };
+
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter s_w = new StreamWriter(File.Create(save.FileName));
+
+                s_w.Write(TextBox.Text);
+                s_w.Dispose();
+            }
+        }
+
         public void SaveFileFunction()
         {
             SaveFileDialog Savefilefunction = new SaveFileDialog
@@ -57,24 +72,6 @@ namespace TextSortGUI
                 sw.Write(TextBox.Text);
                 sw.Dispose();
             }
-
-        }
-
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog save = new SaveFileDialog
-            {
-                Title = "Save File",
-                Filter = "Text Files (*txt)|*txt"  
-            };
-
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter s_w = new StreamWriter(File.Create(save.FileName));
-
-                s_w.Write(TextBox.Text);
-                s_w.Dispose();
-            }
         }
 
         private void uppercaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,8 +81,8 @@ namespace TextSortGUI
 
         private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
-            TextBox.SelectedText = TextBox.SelectedText; 
+
+            TextBox.SelectedText = TextBox.SelectedText;
 
             Regex RegexCasing = new Regex("(?:[.,?!]\\s[a-z]|^(?:\\s+)?[a-z])", RegexOptions.Multiline);
 
@@ -94,31 +91,19 @@ namespace TextSortGUI
 
             text = text.ToLower(); // all characters to lower case
 
-            text = RegexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression
+            text = RegexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression (using lambda)
 
             TextBox.Text = text;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var Result = MessageBox.Show("Do you want to close the program without saving?", "Exit", MessageBoxButtons.YesNoCancel);
 
-            switch (Result)
-            {
-                case DialogResult.Yes:
-                    break;
+            CustomMessageBox Cmb = new CustomMessageBox();
 
-                case DialogResult.No:
-                    SaveFileFunction();
-                    e.Cancel = true;
-                    break;
-
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-              
-            }
-
+            Cmb.ShowDialog();
+           
         }
+
     }
 }
