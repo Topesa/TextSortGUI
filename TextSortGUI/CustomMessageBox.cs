@@ -44,7 +44,6 @@ namespace TextSortGUI
 
             richTextBox1.SelectAll();
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
-
         }
 
         private void btnYes_Click(object sender, EventArgs e)
@@ -61,7 +60,7 @@ namespace TextSortGUI
 
         private void CustomMessageBox_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // need to implement
+            
         }
     }
 }

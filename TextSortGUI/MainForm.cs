@@ -14,7 +14,7 @@ namespace TextSortGUI
 {
     public partial class MainForm : Form
     {
-        private string text = "";
+        //private string text = string.Empty;
 
         public MainForm()
         {
@@ -23,6 +23,7 @@ namespace TextSortGUI
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
             OpenFileDialog open = new OpenFileDialog
             {
                 Title = "Open File",
@@ -33,10 +34,7 @@ namespace TextSortGUI
             {
                 StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
 
-                text = sr.ReadToEnd(); // need separated variable for AccordingToTheSpelling 
-                TextBox.Text = text;
-
-                sr.Dispose();
+                TextBox.Text = sr.ReadToEnd();
             }
         }
 
@@ -81,29 +79,30 @@ namespace TextSortGUI
 
         private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            TextBox.SelectedText = TextBox.SelectedText;
+            if (TextBox.SelectedText.Length < 1)
+            {
+                return;
+            }
 
             Regex RegexCasing = new Regex("(?:[.,?!]\\s[a-z]|^(?:\\s+)?[a-z])", RegexOptions.Multiline);
 
             // /[.,?!]\\s[a-z]/   matches letters following a space and punctuation
             // /^(?:\\s+)?[a-z]/  matches the first letter in a string
 
-            text = text.ToLower(); // all characters to lower case
+            string Select_Text = TextBox.SelectedText;
 
-            text = RegexCasing.Replace(text, s => (s.Value.ToUpper()));  // capitalize each match in the regular expression (using lambda)
+            Select_Text = Select_Text.ToLower();
 
-            TextBox.Text = text;
+            Select_Text = RegexCasing.Replace(Select_Text, s => (s.Value.ToUpper()));
+
+            TextBox.SelectedText = Select_Text;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             CustomMessageBox Cmb = new CustomMessageBox();
 
             Cmb.ShowDialog();
-           
         }
-
     }
 }
