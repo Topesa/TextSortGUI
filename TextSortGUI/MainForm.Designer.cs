@@ -65,28 +65,28 @@ namespace TextSortGUI
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // uppercaseToolStripMenuItem
             // 
             this.uppercaseToolStripMenuItem.Name = "uppercaseToolStripMenuItem";
             this.uppercaseToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.uppercaseToolStripMenuItem.Text = "Uppercase";
-            this.uppercaseToolStripMenuItem.Click += new System.EventHandler(this.uppercaseToolStripMenuItem_Click);
+            this.uppercaseToolStripMenuItem.Click += new System.EventHandler(this.UppercaseToolStripMenuItem_Click);
             // 
             // accordingToSpellingToolStripMenuItem
             // 
             this.accordingToSpellingToolStripMenuItem.Name = "accordingToSpellingToolStripMenuItem";
             this.accordingToSpellingToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
             this.accordingToSpellingToolStripMenuItem.Text = "According to spelling";
-            this.accordingToSpellingToolStripMenuItem.Click += new System.EventHandler(this.accordingToSpellingToolStripMenuItem_Click);
+            this.accordingToSpellingToolStripMenuItem.Click += new System.EventHandler(this.AccordingToSpellingToolStripMenuItem_Click);
             // 
             // TextBox
             // 
@@ -102,6 +102,7 @@ namespace TextSortGUI
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBox.Size = new System.Drawing.Size(800, 411);
             this.TextBox.TabIndex = 3;
+            this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // MainForm
             // 
@@ -113,7 +114,7 @@ namespace TextSortGUI
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "TextSortGUI";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

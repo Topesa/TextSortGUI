@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Windows.Forms;
+
 namespace TextSortGUI
 {
     partial class CustomMessageBox
@@ -48,7 +51,7 @@ namespace TextSortGUI
             this.btnYes.Text = "Yes";
             this.btnYes.UseCompatibleTextRendering = true;
             this.btnYes.UseVisualStyleBackColor = true;
-            this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
+            this.btnYes.Click += new System.EventHandler(this.BtnYes_Click);
             // 
             // btnNo
             // 
@@ -61,7 +64,7 @@ namespace TextSortGUI
             this.btnNo.Text = "No";
             this.btnNo.UseCompatibleTextRendering = true;
             this.btnNo.UseVisualStyleBackColor = true;
-            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
+            this.btnNo.Click += new System.EventHandler(this.BtnNo_Click);
             // 
             // pictureBox1
             // 
@@ -106,7 +109,6 @@ namespace TextSortGUI
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exit";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CustomMessageBox_FormClosing);
             this.Load += new System.EventHandler(this.CustomMessageBox_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

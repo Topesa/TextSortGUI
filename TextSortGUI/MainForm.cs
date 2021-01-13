@@ -14,14 +14,14 @@ namespace TextSortGUI
 {
     public partial class MainForm : Form
     {
-        //private string text = string.Empty;
+        public bool TextWasChanged = false;
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             OpenFileDialog open = new OpenFileDialog
@@ -35,10 +35,12 @@ namespace TextSortGUI
                 StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
 
                 TextBox.Text = sr.ReadToEnd();
+                
+                TextWasChanged = false;
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog
             {
@@ -72,12 +74,12 @@ namespace TextSortGUI
             }
         }
 
-        private void uppercaseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UppercaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox.SelectedText = TextBox.SelectedText.ToUpper();
         }
 
-        private void accordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AccordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TextBox.SelectedText.Length < 1)
             {
@@ -98,11 +100,30 @@ namespace TextSortGUI
             TextBox.SelectedText = Select_Text;
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void TextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextWasChanged = true;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             CustomMessageBox Cmb = new CustomMessageBox();
 
-            Cmb.ShowDialog();
+            if (TextWasChanged)
+            {
+                switch (Cmb.ShowDialog())
+                {
+                    case DialogResult.Yes:
+                        SaveFileFunction();
+                        break;
+                    case DialogResult.No:
+                        TextWasChanged = false;
+                        break;
+                    default:
+                        e.Cancel = true;
+                        break;
+                }
+            }
         }
     }
 }

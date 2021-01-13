@@ -21,7 +21,6 @@ namespace TextSortGUI
         private void CustomMessageBox_Load(object sender, EventArgs e)
         {
             string Full_Regular = "Do you want to save this document before application closes?" + Environment.NewLine + "Click ";
-
             string Bold_Yes = "Yes ";
             string Bold_No = "No ";
             string Save_Regular = "to save and close or ";
@@ -46,21 +45,14 @@ namespace TextSortGUI
             richTextBox1.SelectionAlignment = HorizontalAlignment.Center;
         }
 
-        private void btnYes_Click(object sender, EventArgs e)
+        private void BtnYes_Click(object sender, EventArgs e)
         {
-            MainForm f1 = new MainForm();
-
-            f1.SaveFileFunction();
+            DialogResult = DialogResult.Yes;
         }
 
-        private void btnNo_Click(object sender, EventArgs e)
+        private void BtnNo_Click(object sender, EventArgs e)
         {
-            Dispose();
-        }
-
-        private void CustomMessageBox_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            
+            DialogResult = DialogResult.No;
         }
     }
 }
