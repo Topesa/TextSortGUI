@@ -14,11 +14,36 @@ namespace TextSortGUI
 {
     public partial class MainForm : Form
     {
-        public bool TextWasChanged = false;
+        private bool TextWasChanged = false;
+        
 
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        void SetWindowTitle(string FileName)
+        {
+            Text = string.Format("{0} - TextSortGUI", Path.GetFileName(FileName));
+        }
+
+        private void SaveFileFunction()
+        {
+            SaveFileDialog Savefilefunction = new SaveFileDialog
+            {
+                Title = "Save File",
+                Filter = "Text Files (*txt)|*txt", // filtering .txt files because we are only working with text files
+                FileName = "Untitled",
+            };
+
+            if (Savefilefunction.ShowDialog() == DialogResult.OK)
+            {
+               
+                StreamWriter sw = new StreamWriter(File.Create(Savefilefunction.FileName));
+
+                sw.Write(TextBox.Text);
+                sw.Dispose();
+            }
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -27,53 +52,28 @@ namespace TextSortGUI
             OpenFileDialog open = new OpenFileDialog
             {
                 Title = "Open File",
-                Filter = "Text Files (*txt)|*txt"  // filtering .txt files because we are working only with text files
+                Filter = "Text Files (*txt)|*txt",  // filtering .txt files because we are working only with text files
+                FileName = ""
             };
 
             if (open.ShowDialog() == DialogResult.OK)
             {
+               
                 StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
 
+                SetWindowTitle(open.FileName);
+
                 TextBox.Text = sr.ReadToEnd();
-                
                 TextWasChanged = false;
+                sr.Dispose();
             }
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog
-            {
-                Title = "Save File",
-                Filter = "Text Files (*txt)|*txt"
-            };
-
-            if (save.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter s_w = new StreamWriter(File.Create(save.FileName));
-
-                s_w.Write(TextBox.Text);
-                s_w.Dispose();
-            }
+            SaveFileFunction();
         }
-
-        public void SaveFileFunction()
-        {
-            SaveFileDialog Savefilefunction = new SaveFileDialog
-            {
-                Title = "Save File",
-                Filter = "Text Files (*txt)|*txt" // filtering .txt files because we are only working with text files
-            };
-
-            if (Savefilefunction.ShowDialog() == DialogResult.OK)
-            {
-                StreamWriter sw = new StreamWriter(File.Create(Savefilefunction.FileName));
-
-                sw.Write(TextBox.Text);
-                sw.Dispose();
-            }
-        }
-
+    
         private void UppercaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox.SelectedText = TextBox.SelectedText.ToUpper();
@@ -107,6 +107,7 @@ namespace TextSortGUI
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            
             CustomMessageBox Cmb = new CustomMessageBox();
 
             if (TextWasChanged)
