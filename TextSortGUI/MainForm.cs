@@ -26,6 +26,28 @@ namespace TextSortGUI
             Text = string.Format("{0} - TextSortGUI", Path.GetFileName(FileName));
         }
 
+        private void NewFunction()
+        {
+            if (TextWasChanged)
+            {
+                CustomMessageBox Cmb = new CustomMessageBox();
+
+                switch (Cmb.ShowDialog())
+                {
+                    case DialogResult.Yes:
+                        SaveFileFunction();
+                        break;
+                    case DialogResult.No:
+                        TextWasChanged = false;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            TextBox.Clear();
+        }
+
         private void OpenFileFunction()
         {
             OpenFileDialog open = new OpenFileDialog
@@ -102,6 +124,11 @@ namespace TextSortGUI
             }
         }
 
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewFunction();
+        }
+
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileFunction();
@@ -128,7 +155,7 @@ namespace TextSortGUI
 
             ToolStripVisibilityFunction();
         }
-
+        
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             
