@@ -65,6 +65,7 @@ namespace TextSortGUI
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.Image = global::TextSortGUI.Properties.Resources.open;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
@@ -73,6 +74,7 @@ namespace TextSortGUI
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Image = global::TextSortGUI.Properties.Resources.Iconsmind_Outline_Save;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
@@ -81,6 +83,7 @@ namespace TextSortGUI
             // 
             // uppercaseToolStripMenuItem
             // 
+            this.uppercaseToolStripMenuItem.Enabled = false;
             this.uppercaseToolStripMenuItem.Name = "uppercaseToolStripMenuItem";
             this.uppercaseToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.uppercaseToolStripMenuItem.Text = "Uppercase";
@@ -88,6 +91,7 @@ namespace TextSortGUI
             // 
             // accordingToSpellingToolStripMenuItem
             // 
+            this.accordingToSpellingToolStripMenuItem.Enabled = false;
             this.accordingToSpellingToolStripMenuItem.Name = "accordingToSpellingToolStripMenuItem";
             this.accordingToSpellingToolStripMenuItem.Size = new System.Drawing.Size(132, 20);
             this.accordingToSpellingToolStripMenuItem.Text = "According to spelling";

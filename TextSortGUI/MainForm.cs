@@ -16,7 +16,6 @@ namespace TextSortGUI
     {
         private bool TextWasChanged = false;
         
-
         public MainForm()
         {
             InitializeComponent();
@@ -25,6 +24,28 @@ namespace TextSortGUI
         void SetWindowTitle(string FileName)
         {
             Text = string.Format("{0} - TextSortGUI", Path.GetFileName(FileName));
+        }
+
+        private void OpenFileFunction()
+        {
+            OpenFileDialog open = new OpenFileDialog
+            {
+                Title = "Open File",
+                Filter = "Text Files (*txt)|*txt",  // filtering .txt files because we are working only with text files
+                FileName = ""
+            };
+
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+
+                StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
+
+                SetWindowTitle(open.FileName);
+
+                TextBox.Text = sr.ReadToEnd();
+                TextWasChanged = false;
+                sr.Dispose();
+            }
         }
 
         private void SaveFileFunction()
@@ -46,40 +67,7 @@ namespace TextSortGUI
             }
         }
 
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            OpenFileDialog open = new OpenFileDialog
-            {
-                Title = "Open File",
-                Filter = "Text Files (*txt)|*txt",  // filtering .txt files because we are working only with text files
-                FileName = ""
-            };
-
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-               
-                StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
-
-                SetWindowTitle(open.FileName);
-
-                TextBox.Text = sr.ReadToEnd();
-                TextWasChanged = false;
-                sr.Dispose();
-            }
-        }
-
-        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileFunction();
-        }
-    
-        private void UppercaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TextBox.SelectedText = TextBox.SelectedText.ToUpper();
-        }
-
-        private void AccordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AccordingToSpellingFunction()
         {
             if (TextBox.SelectedText.Length < 1)
             {
@@ -100,9 +88,45 @@ namespace TextSortGUI
             TextBox.SelectedText = Select_Text;
         }
 
+        private void ToolStripVisibilityFunction()
+        {
+            if(!string.IsNullOrWhiteSpace(TextBox.Text))
+            {
+                uppercaseToolStripMenuItem.Enabled = true;
+                accordingToSpellingToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                uppercaseToolStripMenuItem.Enabled = false;
+                accordingToSpellingToolStripMenuItem.Enabled = false;
+            }
+        }
+
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileFunction();
+        }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileFunction();
+        }
+    
+        private void UppercaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox.SelectedText = TextBox.SelectedText.ToUpper();
+        }
+
+        private void AccordingToSpellingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AccordingToSpellingFunction();
+        }
+
         private void TextBox_TextChanged(object sender, EventArgs e)
         {
             TextWasChanged = true;
+
+            ToolStripVisibilityFunction();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
