@@ -28,26 +28,22 @@ namespace TextSortGUI
 
         private void NewFunction()
         {
+            
             if (TextWasChanged)
             {
-                CustomMessageBox Cmb = new CustomMessageBox();
+                DialogResult newSave = MessageBox.Show("Do you want to Save file?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
 
-                switch (Cmb.ShowDialog())
+                if (newSave == DialogResult.Yes)
                 {
-                    case DialogResult.Yes:
-                        SaveFileFunction();
-                        break;
-                    case DialogResult.No:
-                        TextWasChanged = false;
-                        break;
-                    default:
-                        break;
+                    SaveFileFunction();
+                }
+                else if (newSave == DialogResult.No)
+                {
+                    TextBox.Clear();
                 }
             }
-
-            TextBox.Clear();
         }
-
+            
         private void OpenFileFunction()
         {
             OpenFileDialog open = new OpenFileDialog
