@@ -1,34 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace TextSortGUI
 {
     public partial class MainForm : Form
     {
         private bool TextWasChanged = false;
-        
+
         public MainForm()
         {
             InitializeComponent();
         }
 
-        void SetWindowTitle(string FileName)
+        private void SetWindowTitle(string FileName)
         {
             Text = string.Format("{0} - TextSortGUI", Path.GetFileName(FileName));
         }
 
         private void NewFunction()
         {
-            
             if (TextWasChanged)
             {
                 DialogResult newSave = MessageBox.Show("Do you want to Save file?", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
@@ -43,7 +35,7 @@ namespace TextSortGUI
                 }
             }
         }
-            
+
         private void OpenFileFunction()
         {
             OpenFileDialog open = new OpenFileDialog
@@ -55,7 +47,6 @@ namespace TextSortGUI
 
             if (open.ShowDialog() == DialogResult.OK)
             {
-
                 StreamReader sr = new StreamReader(File.OpenRead(open.FileName));
 
                 SetWindowTitle(open.FileName);
@@ -77,7 +68,6 @@ namespace TextSortGUI
 
             if (Savefilefunction.ShowDialog() == DialogResult.OK)
             {
-               
                 StreamWriter sw = new StreamWriter(File.Create(Savefilefunction.FileName));
 
                 sw.Write(TextBox.Text);
@@ -108,7 +98,7 @@ namespace TextSortGUI
 
         private void ToolStripVisibilityFunction()
         {
-            if(!string.IsNullOrWhiteSpace(TextBox.Text))
+            if (!string.IsNullOrWhiteSpace(TextBox.Text))
             {
                 uppercaseToolStripMenuItem.Enabled = true;
                 accordingToSpellingToolStripMenuItem.Enabled = true;
@@ -134,7 +124,7 @@ namespace TextSortGUI
         {
             SaveFileFunction();
         }
-    
+
         private void UppercaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TextBox.SelectedText = TextBox.SelectedText.ToUpper();
@@ -151,10 +141,9 @@ namespace TextSortGUI
 
             ToolStripVisibilityFunction();
         }
-        
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
             CustomMessageBox Cmb = new CustomMessageBox();
 
             if (TextWasChanged)
@@ -164,9 +153,11 @@ namespace TextSortGUI
                     case DialogResult.Yes:
                         SaveFileFunction();
                         break;
+
                     case DialogResult.No:
                         TextWasChanged = false;
                         break;
+
                     default:
                         e.Cancel = true;
                         break;

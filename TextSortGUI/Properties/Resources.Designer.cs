@@ -63,9 +63,9 @@ namespace TextSortGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _671404_button_512x512 {
+        internal static System.Drawing.Bitmap New_File_Icon {
             get {
-                object obj = ResourceManager.GetObject("671404_button_512x512", resourceCulture);
+                object obj = ResourceManager.GetObject("New_File_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace TextSortGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _new {
+        internal static System.Drawing.Bitmap Open_File_Icon {
             get {
-                object obj = ResourceManager.GetObject("new", resourceCulture);
+                object obj = ResourceManager.GetObject("Open_File_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,59 +83,9 @@ namespace TextSortGUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap abc {
+        internal static System.Drawing.Bitmap Save_File_Icon {
             get {
-                object obj = ResourceManager.GetObject("abc", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Custom_Icon_Design_Mono_General_1_Save {
-            get {
-                object obj = ResourceManager.GetObject("Custom-Icon-Design-Mono-General-1-Save", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Iconsmind_Outline_Save {
-            get {
-                object obj = ResourceManager.GetObject("Iconsmind-Outline-Save", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap open {
-            get {
-                object obj = ResourceManager.GetObject("open", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Pelfusion_Flat_Folder_Open_Folder {
-            get {
-                object obj = ResourceManager.GetObject("Pelfusion-Flat-Folder-Open-Folder", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap spell {
-            get {
-                object obj = ResourceManager.GetObject("spell", resourceCulture);
+                object obj = ResourceManager.GetObject("Save_File_Icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
