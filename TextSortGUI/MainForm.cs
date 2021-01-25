@@ -19,6 +19,11 @@ namespace TextSortGUI
             Text = string.Format("{0} - TextSortGUI", Path.GetFileName(FileName));
         }
 
+        private void ClearWindowsTitle()
+        {
+            Text = string.Format("TextSortGUI");
+        }
+
         private void NewFunction()
         {
             if (TextWasChanged)
@@ -32,6 +37,8 @@ namespace TextSortGUI
                 else if (newSave == DialogResult.No)
                 {
                     TextBox.Clear();
+                    TextWasChanged = false;
+                    ClearWindowsTitle();
                 }
             }
         }
